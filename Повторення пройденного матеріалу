@@ -1,0 +1,326 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+// struct Date {                                                                // Завдання 1
+//     int day;
+//     int month;
+//     int year;
+// };
+
+// struct Man {
+//     string surname;
+//     string name;
+//     int age;
+//     Date birthDate;
+// };
+
+// void printMan(const Man& m) {
+//     cout << m.surname << " " << m.name
+//          << ", вік: " << m.age
+//          << ", дата народження: " << m.birthDate.day << "."
+//          << m.birthDate.month << "."
+//          << m.birthDate.year << endl;
+// }
+
+// void addMan(Man*& arr, int& size, const Man& newMan) {
+//     Man* tmp = new Man[size + 1];
+//     for (int i = 0; i < size; i++) tmp[i] = arr[i];
+//     tmp[size] = newMan;
+//     delete[] arr;
+//     arr = tmp;
+//     size++;
+// }
+
+// void deleteMan(Man*& arr, int& size, int index) {
+//     if (index < 0 || index >= size) return;
+//     Man* tmp = new Man[size - 1];
+//     for (int i = 0, j = 0; i < size; i++) {
+//         if (i == index) continue;
+//         tmp[j++] = arr[i];
+//     }
+//     delete[] arr;
+//     arr = tmp;
+//     size--;
+// }
+
+// void sortBySurname(Man* arr, int size) {
+//     for (int i = 0; i < size - 1; i++)
+//         for (int j = 0; j < size - i - 1; j++)
+//             if (arr[j].surname > arr[j + 1].surname)
+//                 swap(arr[j], arr[j + 1]);
+// }
+
+// void sortByName(Man* arr, int size) {
+//     for (int i = 0; i < size - 1; i++)
+//         for (int j = 0; j < size - i - 1; j++)
+//             if (arr[j].name > arr[j + 1].name)
+//                 swap(arr[j], arr[j + 1]);
+// }
+
+// void printBirthdayThisMonth(Man* arr, int size) {
+//     time_t t = time(nullptr);
+//     tm* now = localtime(&t);
+//     int currentMonth = now->tm_mon + 1;
+
+//     cout << "\nІменинники цього місяця (" << currentMonth << "):" << endl;
+//     for (int i = 0; i < size; i++)
+//         if (arr[i].birthDate.month == currentMonth)
+//             printMan(arr[i]);
+// }
+
+// void searchByNameOrSurname(Man* arr, int size, const string& key) {
+//     cout << "Результати пошуку \"" << key << "\":" << endl;
+//     bool found = false;
+//     for (int i = 0; i < size; i++) {
+//         if (arr[i].surname == key || arr[i].name == key) {
+//             printMan(arr[i]);
+//             found = true;
+//         }
+//     }
+//     if (!found) cout << "Нічого не знайдено.\n";
+// }
+
+// void editMan(Man& m) {
+//     cout << "Редагування запису:\n";
+//     printMan(m);
+//     cout << "Нове прізвище: ";
+//     cin >> m.surname;
+//     cout << "Нове ім’я: ";
+//     cin >> m.name;
+//     cout << "Новий вік: ";
+//     cin >> m.age;
+//     cout << "Нова дата (день місяць рік): ";
+//     cin >> m.birthDate.day >> m.birthDate.month >> m.birthDate.year;
+// }
+
+// void printAll(Man* arr, int size) {
+//     if (size == 0) {
+//         cout << "Список порожній.\n";
+//         return;
+//     }
+//     for (int i = 0; i < size; i++) {
+//         cout << i + 1 << ") ";
+//         printMan(arr[i]);
+//     }
+// }
+
+
+
+// const int SIZE = 10;                                                         // Завдання 2
+// const int NUM_TRAPS = 5;
+// const int MAX_LIFE = 3;
+
+// void printMaze(const vector<vector<char>>& maze, int life) {
+//     cout << string(30, '\n'); // умовне "очищення" екрану
+//     for (int i = 0; i < SIZE; ++i) {
+//         for (int j = 0; j < SIZE; ++j)
+//             cout << maze[i][j] << ' ';
+//         cout << '\n';
+//     }
+//     cout << "\nЖиття: " << life << "\n";
+//     cout << "Керування: W A S D (та Enter)\n";
+// }
+
+// // Простий генератор псевдовипадкових чисел
+// int simpleRand(int min, int max) {
+//     static unsigned long seed = 5323;
+//     seed = (8253729 * seed + 2396403);
+//     return min + (seed % (max - min + 1));
+// }
+
+// void placeRandom(vector<vector<char>>& maze, char symbol) {
+//     int x, y;
+//     do {
+//         x = simpleRand(0, SIZE - 1);
+//         y = simpleRand(0, SIZE - 1);
+//     } while (maze[x][y] != ' ');
+//     maze[x][y] = symbol;
+// }
+
+
+
+
+int main() {
+    
+    // Завдання 1
+    
+    // int size = 0;
+    // Man* people = nullptr;
+
+
+    // addMan(people, size, {"Іваненко", "Петро", 20, {12, 10, 2005}});
+    // addMan(people, size, {"Сидоренко", "Олена", 22, {3, 10, 2003}});
+    // addMan(people, size, {"Коваль", "Ірина", 19, {7, 12, 2006}});
+
+    // int choice;
+    // do {
+    //     cout << "\n=== МЕНЮ ===\n";
+    //     cout << "1. Вивести всі записи\n";
+    //     cout << "2. Додати запис\n";
+    //     cout << "3. Видалити запис\n";
+    //     cout << "4. Редагувати запис\n";
+    //     cout << "5. Сортувати за прізвищем\n";
+    //     cout << "6. Сортувати за ім’ям\n";
+    //     cout << "7. Показати іменинників цього місяця\n";
+    //     cout << "8. Пошук за ім’ям або прізвищем\n";
+    //     cout << "0. Вихід\n";
+    //     cout << "Ваш вибір: ";
+    //     cin >> choice;
+
+    //     switch (choice) {
+    //         case 1:
+    //             printAll(people, size);
+    //             break;
+
+    //         case 2: {
+    //             Man m;
+    //             cout << "Прізвище: "; cin >> m.surname;
+    //             cout << "Ім’я: "; cin >> m.name;
+    //             cout << "Вік: "; cin >> m.age;
+    //             cout << "Дата народження (день місяць рік): ";
+    //             cin >> m.birthDate.day >> m.birthDate.month >> m.birthDate.year;
+    //             addMan(people, size, m);
+    //             cout << "Додано!\n";
+    //             break;
+    //         }
+
+    //         case 3: {
+    //             printAll(people, size);
+    //             cout << "Введіть номер для видалення: ";
+    //             int idx; cin >> idx;
+    //             deleteMan(people, size, idx - 1);
+    //             cout << "Видалено!\n";
+    //             break;
+    //         }
+
+    //         case 4: {
+    //             printAll(people, size);
+    //             cout << "Введіть номер для редагування: ";
+    //             int idx; cin >> idx;
+    //             if (idx > 0 && idx <= size)
+    //                 editMan(people[idx - 1]);
+    //             else
+    //                 cout << "Невірний індекс!\n";
+    //             break;
+    //         }
+
+    //         case 5:
+    //             sortBySurname(people, size);
+    //             cout << "Відсортовано за прізвищем.\n";
+    //             cout << "\n";
+    //             printAll(people, size);
+    //             break;
+
+    //         case 6:
+    //             sortByName(people, size);
+    //             cout << "Відсортовано за ім’ям.\n";
+    //             cout << "\n";
+    //             printAll(people, size);
+    //             break;
+
+    //         case 7:
+    //             printBirthdayThisMonth(people, size);
+    //             break;
+
+    //         case 8: {
+    //             string key;
+    //             cout << "Введіть ім’я або прізвище: ";
+    //             cin >> key;
+    //             searchByNameOrSurname(people, size, key);
+    //             break;
+    //         }
+
+    //         case 0:
+    //             cout << "Вихід з програми...\n";
+    //             break;
+
+    //         default:
+    //             cout << "Невірний вибір! Спробуйте ще раз.\n";
+    //     }
+
+    // } while (choice != 0);
+
+    // delete[] people;
+    
+    
+    
+    
+    
+    // Завдання 2
+    
+    // vector<vector<char>> maze(SIZE, vector<char>(SIZE, ' '));
+
+    // // Створюємо стіни по периметру
+    // for (int i = 0; i < SIZE; ++i) {
+    //     maze[0][i] = '#';
+    //     maze[SIZE - 1][i] = '#';
+    //     maze[i][0] = '#';
+    //     maze[i][SIZE - 1] = '#';
+    // }
+
+    // // Початкова позиція гравця
+    // int px = 1, py = 1;
+    // int* x = &px;
+    // int* y = &py;
+    // maze[*x][*y] = 'P';
+
+    // // Випадкове розміщення виходу
+    // placeRandom(maze, 'X');
+
+    // // Випадкове розміщення пасток
+    // for (int i = 0; i < NUM_TRAPS; ++i)
+    //     placeRandom(maze, '!');
+
+    // int life = MAX_LIFE;
+    // bool win = false;
+
+    // while (life > 0 && !win) {
+    //     printMaze(maze, life);
+    //     cout << "Ваш хід: ";
+    //     char move;
+    //     cin >> move;
+
+    //     int nx = *x;
+    //     int ny = *y;
+
+    //     move = tolower(move);
+    //     if (move == 'w') nx--;
+    //     else if (move == 's') nx++;
+    //     else if (move == 'a') ny--;
+    //     else if (move == 'd') ny++;
+    //     else continue;
+
+    //     if (maze[nx][ny] == '#') continue;
+
+    //     if (maze[nx][ny] == '!') {
+    //         life--;
+    //         cout << "Ви втратили життя! (-1)\n";
+    //     }
+
+    //     if (maze[nx][ny] == 'X') {
+    //         win = true;
+    //         break;
+    //     }
+
+    //     maze[*x][*y] = ' ';
+    //     *x = nx;
+    //     *y = ny;
+    //     maze[*x][*y] = 'P';
+    // }
+
+    // cout << string(30, '\n');
+    // if (win)
+    //     cout << "🎉 Вітаємо! Ви знайшли вихід!\n";
+    // else
+    //     cout << "💀 Гру завершено. Ви втратили всі життя.\n";
+
+    
+
+    return 0;
+}
